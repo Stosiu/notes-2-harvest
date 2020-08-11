@@ -1,14 +1,15 @@
 {
   "name": "notes-2-harvest",
   "version": "0.0.1",
-  "description": "Make uploading lots of harvest entries easy.",
+  "description": "Make uploading lots of Harvest entries easy.",
+  "repository": "git@github.com:Stosiu/notes-2-harvest.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "tsc -w",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts ./__tests__/files/example-note.txt",
+    "build": "rm -rf dist && tsc",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "dev": "nodemon -r tsconfig-paths/register --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "format:check": "prettier --check './src/**/*.{js,ts}' --check './__tests__/**/*.{js,ts}'",
     "format:write": "prettier --write './src/**/*.{js,ts}' --write './__tests__/**/*.{js,ts}'",
     "eslint": "eslint ./src/ --ext js,jsx,ts,tsx",
@@ -75,6 +76,7 @@
     "prettier": "^2.0.5",
     "ts-jest": "^26.2.0",
     "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {

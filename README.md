@@ -6,3 +6,4 @@
 * Improve displaying of entries being uploaded
 * Add an option to pass tokens as arguments
 * Add more tests
+* Fix dist file
