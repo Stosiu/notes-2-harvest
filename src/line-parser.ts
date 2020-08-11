@@ -1,4 +1,5 @@
 import * as dayjs from 'dayjs';
+import * as chalk from 'chalk';
 
 import { Project, TaskAssignment } from './dtos';
 import { LineParseError } from '~/errors/LineParseError';
@@ -30,21 +31,8 @@ export class LineParser {
     this.date = date;
     this.modificated = line;
 
-    const project = this.destructProjectByCode(projectsMap);
-
-    if (!project) {
-      throw this.generateError("Couldn't parse project code");
-    } else {
-      this.project = project;
-    }
-
-    const task = this.destructTaskIdByName(this.project);
-
-    if (!task) {
-      throw this.generateError("Couldn't parse task");
-    } else {
-      this.task = task;
-    }
+    this.project = this.destructProjectByCode(projectsMap);
+    this.task = this.destructTaskIdByName(this.project);
   }
 
   toTimeEntry(): TimeEntry {
@@ -63,7 +51,7 @@ export class LineParser {
     };
   }
 
-  private destructProjectByCode(projects: Project[]): Project | undefined {
+  private destructProjectByCode(projects: Project[]): Project {
     const tokens = projects.map((project) => `\\[${project.code}\\]`);
 
     const regexp = new RegExp(tokens.join('|'));
@@ -71,8 +59,11 @@ export class LineParser {
       regexp
     );
 
+    const listOfValidProjects = projects.map((p) => p.code).join(', ');
     if (projectCodeMatch === null) {
-      return undefined;
+      throw this.generateError(
+        `Couldn't parse project code. Make sure it's on the list: ${listOfValidProjects}.`
+      );
     }
 
     const projectName = projectCodeMatch[0].trim().slice(1, -1);
@@ -80,10 +71,16 @@ export class LineParser {
     const project = projects.find((p) => p.code === projectName);
     this.modificated = this.modificated.replace(regexp, '');
 
+    if (!project) {
+      throw this.generateError(
+        `Project code ${project} is not in your list of project codes ${listOfValidProjects}`
+      );
+    }
+
     return project;
   }
 
-  private destructTaskIdByName(project: Project): TaskAssignment | undefined {
+  private destructTaskIdByName(project: Project): TaskAssignment {
     const tokens = project.task_assignments.map(
       (assigment) => `\\~${assigment.task.name}\\~`
     );
@@ -93,14 +90,25 @@ export class LineParser {
       regexp
     );
 
+    const listOfValidTasks = project.task_assignments
+      .map((t) => t.task.name)
+      .join(', ');
     if (taskNameMatch === null) {
-      return undefined;
+      throw this.generateError(
+        `Couldn't parse project task. Make sure it's on the list: ${listOfValidTasks}.`
+      );
     }
 
     const taskName = taskNameMatch[0].trim().slice(1, -1);
 
     const task = project.task_assignments.find((p) => p.task.name === taskName);
     this.modificated = this.modificated.replace(regexp, '');
+
+    if (!task) {
+      throw this.generateError(
+        `Task code ${project} is not in your list of project codes ${listOfValidTasks}`
+      );
+    }
 
     return task;
   }
@@ -154,8 +162,12 @@ export class LineParser {
   }
 
   private generateError(message: string) {
+    const date = chalk.cyan(this.date.format('DD.MM.YYYY'));
+
     return new LineParseError(
-      `${message} for ${this.line} in ${this.date.format('DD.MM.YYYY')}`
+      `${chalk.red(message)}\nParsing line: "${chalk.blue(
+        this.line
+      )}" in ${date}.`
     );
   }
 }

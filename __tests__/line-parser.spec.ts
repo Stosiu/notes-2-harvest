@@ -141,85 +141,62 @@ describe('LineParser', () => {
 
   describe('invalid data', () => {
     it('should fail if project code is not in the list', () => {
-      expect.assertions(2);
+      expect.assertions(1);
 
       const line = '9:00 - 10:00 ABC [NOT] ~Programming~';
       try {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Couldn't parse project code for ${line} in ${dayjs().format(
-            'DD.MM.YYYY'
-          )}`
-        );
       }
     });
 
     it('should fail if task name is not in the list', () => {
-      expect.assertions(2);
+      expect.assertions(1);
 
       const line = '9:00 - 10:00 ABC [TEST] ~X~';
       try {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Couldn't parse task for ${line} in ${dayjs().format('DD.MM.YYYY')}`
-        );
       }
     });
 
     it('should fail if start is a wrong hour', () => {
-      expect.assertions(2);
+      expect.assertions(1);
 
       const line = '250:00 - 10:00 ABC [TEST] ~Programming~';
       try {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Failed to parse start and duration for ${line} in ${dayjs().format(
-            'DD.MM.YYYY'
-          )}`
-        );
       }
     });
 
     it('should fail if end hour is a wrong hour', () => {
-      expect.assertions(2);
+      expect.assertions(1);
 
       const line = '10:00 - 250:00 ABC [TEST] ~Programming~';
       try {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Failed to parse start and duration for ${line} in ${dayjs().format(
-            'DD.MM.YYYY'
-          )}`
-        );
       }
     });
 
     it('should fail if start is after end', () => {
-      expect.assertions(2);
+      expect.assertions(1);
 
       const line = '16:00 - 10:00 ABC [TEST] ~Programming~';
       try {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Start cannot be after end for ${line} in ${dayjs().format(
-            'DD.MM.YYYY'
-          )}`
-        );
       }
     });
 
     it('should fail if minutes if higher than 59', () => {
-      expect.assertions(4);
+      expect.assertions(2);
 
       let line = '10:00 - 11:59 ABC [TEST] ~Programming~';
       new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
@@ -232,9 +209,6 @@ describe('LineParser', () => {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Maximum minute is 59 for ${line} in ${dayjs().format('DD.MM.YYYY')}`
-        );
       }
 
       line = '10:00 - 11:60 ABC [TEST] ~Programming~';
@@ -242,9 +216,6 @@ describe('LineParser', () => {
         new LineParser(line, dayjs(), EXAMPLE_PROJECTS).toTimeEntry();
       } catch (e) {
         expect(e).toBeInstanceOf(LineParseError);
-        expect(e.message).toEqual(
-          `Maximum minute is 59 for ${line} in ${dayjs().format('DD.MM.YYYY')}`
-        );
       }
     });
   });
