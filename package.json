@@ -80,8 +80,10 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@types/cli-progress": "^3.7.0",
     "axios": "^0.19.2",
     "chalk": "^4.1.0",
+    "cli-progress": "^3.8.2",
     "commander": "^6.0.0",
     "configstore": "^5.0.1",
     "dayjs": "^1.8.33",

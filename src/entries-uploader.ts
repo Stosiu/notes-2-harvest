@@ -1,6 +1,6 @@
 import Harvest from 'harvest';
-import * as dayjs from 'dayjs';
 import * as chalk from 'chalk';
+import * as cliProgress from 'cli-progress';
 
 import { EntriesLogs } from './notes-parser';
 import { TimeEntry } from './line-parser';
@@ -10,32 +10,37 @@ export class EntriesUploader {
     notes: EntriesLogs,
     harvestInstance: Harvest
   ): Promise<void> {
+    const totalNotesToUpload = Object.values(notes).reduce(
+      (acc, el) => acc + el.length,
+      0
+    );
+    // eslint-disable-next-line no-console
+    console.log(
+      `🏋🏻 Starting logging ${chalk.blue(
+        totalNotesToUpload
+      )} entries to Harvest.`
+    );
+
+    let currentUpload: number = 0;
+    let totalHours: number = 0;
+    const bar = new cliProgress.SingleBar({}, cliProgress.Presets.legacy);
+    bar.start(totalNotesToUpload, currentUpload);
+
     for (const date in notes) {
       const notesToUpload = notes[date];
-      let totalHours = 0;
 
-      const when = chalk.green(dayjs(date).format('DD MMMM YYYY'));
-      // eslint-disable-next-line no-console
-      console.log(`🏋🏻 ${chalk.blue('Started logging for')} ${when}...`);
-
-      // TODO: Add progress bar.
       for (const note of notesToUpload) {
-        // eslint-disable-next-line no-console
-        console.log(
-          `🏋🏻 ${chalk.blue('Logging')} ${note.duration / 3600} hours`
-        );
         const createdEntry = await this.uploadNote(note, harvestInstance);
+        currentUpload += 1;
+        bar.update(currentUpload);
         totalHours += createdEntry.hours;
       }
-
-      const hoursLog = `${totalHours} ${totalHours > 1 ? 'hours' : 'hour'}`;
-      // eslint-disable-next-line no-console
-      console.log(
-        `⏲ Finished logging for ${when}. Logged ${chalk.blue(
-          hoursLog
-        )} in total.`
-      );
     }
+
+    bar.stop();
+    const hoursLog = `${totalHours} ${totalHours > 1 ? 'hours' : 'hour'}`;
+    // eslint-disable-next-line no-console
+    console.log(`🏆 Finished! Logged ${chalk.blue(hoursLog)} in total!`);
   }
 
   static async uploadNote(note: TimeEntry, harvestInstance: Harvest) {
