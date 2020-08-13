@@ -1,6 +1,7 @@
 import * as faker from 'faker';
 
 import { Project, TaskAssignment } from '~/dtos';
+import { TimeEntry } from '~/line-parser';
 
 export const generateTaskAssigment = (
   name: string = faker.random.word()
@@ -61,3 +62,14 @@ export const generateNote = (data: GenerateNoteData): string => {
 
   return note;
 };
+
+export const generateTimeEntry = (): TimeEntry => ({
+  description: faker.random.word(),
+  projectId: faker.random.number(),
+  projectName: faker.random.word(),
+  taskId: faker.random.number(),
+  taskName: faker.random.word(),
+  start: faker.date.past().toISOString(),
+  duration: faker.random.number(),
+  billable: faker.random.boolean()
+});
