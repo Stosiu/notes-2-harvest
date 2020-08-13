@@ -114,7 +114,7 @@ describe('NoteParser', () => {
       expect(output['2020-01-15'].length).toEqual(0);
       expect(output['2020-01-22'].length).toEqual(0);
       expect(output['2020-01-26'].length).toEqual(0);
-      expect(Object.keys(output).length).toEqual(2);
+      expect(Object.keys(output).length).toEqual(3);
     });
   });
 });
