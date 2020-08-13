@@ -13,7 +13,7 @@ import {
 describe('NoteParser', () => {
   describe('valid data', () => {
     it('should properly parse single date entry', () => {
-      const date = '01.01.2020';
+      const date = '2020-01-14';
       const description = 'Test description';
 
       const task = generateTaskAssigment('Programming');
@@ -73,29 +73,29 @@ describe('NoteParser', () => {
       ];
 
       const generateNoteData: GenerateNoteData = {
-        [startDate.format('MM.DD.YYYY')]: data,
-        [startDate.add(1, 'd').format('MM.DD.YYYY')]: data,
-        [startDate.add(2, 'd').format('MM.DD.YYYY')]: data,
-        [startDate.add(3, 'd').format('MM.DD.YYYY')]: data
+        [startDate.format('YYYY-MM-DD')]: data,
+        [startDate.add(1, 'd').format('YYYY-MM-DD')]: data,
+        [startDate.add(2, 'd').format('YYYY-MM-DD')]: data,
+        [startDate.add(3, 'd').format('YYYY-MM-DD')]: data
       };
       const input: string = generateNote(generateNoteData);
       const output = NotesParser.parseNote(input, projects);
 
-      expect(Boolean(output[startDate.format('MM.DD.YYYY')])).toBeTruthy();
+      expect(Boolean(output[startDate.format('YYYY-MM-DD')])).toBeTruthy();
       expect(
-        Boolean(output[startDate.add(1, 'd').format('MM.DD.YYYY')])
+        Boolean(output[startDate.add(1, 'd').format('YYYY-MM-DD')])
       ).toBeTruthy();
       expect(
-        Boolean(output[startDate.add(2, 'd').format('MM.DD.YYYY')])
+        Boolean(output[startDate.add(2, 'd').format('YYYY-MM-DD')])
       ).toBeTruthy();
       expect(
-        Boolean(output[startDate.add(3, 'd').format('MM.DD.YYYY')])
+        Boolean(output[startDate.add(3, 'd').format('YYYY-MM-DD')])
       ).toBeTruthy();
       expect(Object.keys(output).length).toEqual(4);
     });
 
     it('should not fail on a date without entries', () => {
-      const input = '01.01.2020';
+      const input = '2020-10-16';
       const output = NotesParser.parseNote(input, []);
 
       expect(Boolean(output[input])).toBeTruthy();
@@ -105,13 +105,15 @@ describe('NoteParser', () => {
 
     it('should not fail on multiple dates without entries', () => {
       const input = `
-        01.01.2020
-        02.01.2020
+        2020-01-15
+        2020-01-22
+        2020-01-26
       `;
       const output = NotesParser.parseNote(input, []);
 
-      expect(output['01.01.2020'].length).toEqual(0);
-      expect(output['02.01.2020'].length).toEqual(0);
+      expect(output['2020-01-15'].length).toEqual(0);
+      expect(output['2020-01-22'].length).toEqual(0);
+      expect(output['2020-01-26'].length).toEqual(0);
       expect(Object.keys(output).length).toEqual(2);
     });
   });

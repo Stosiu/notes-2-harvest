@@ -29,8 +29,13 @@ describe('uploadCmd', () => {
     await uploadCmd('./__tests__/_utils/files/valid-double-day-note.txt');
   });
 
-  it('should be able to upload singe day test data without errors', async () => {
+  it('should be able to upload single day test data without errors', async () => {
     jest.setTimeout(60000);
-    await uploadCmd('./__tests__/_utils/files/valid-double-day-note.txt');
+    await uploadCmd('./__tests__/_utils/files/valid-single-day-note.txt');
+  });
+
+  it('should be able to upload multiple days test data without errors', async () => {
+    jest.setTimeout(60000);
+    await uploadCmd('./__tests__/_utils/files/valid-multiple-days-note.txt');
   });
 });
