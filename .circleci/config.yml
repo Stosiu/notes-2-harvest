@@ -68,3 +68,22 @@ workflows:
       - test:
           requires:
             - build
+  cron-master:
+    triggers:
+      - schedule:
+          cron: "0 6 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+      - eslint:
+          requires:
+            - build
+      - check-format:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
