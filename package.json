@@ -48,7 +48,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/chalk": "^2.2.0",
-    "@types/cli-progress": "^3.7.0",
+    "@types/cli-progress": "^3.8.0",
     "@types/configstore": "^4.0.0",
     "@types/faker": "^4.1.12",
     "@types/jest": "^26.0.9",
