@@ -2,3 +2,4 @@ node_modules
 .prettierrc.js
 jest.config.js
 .eslintrc.js
+webpack.production.js

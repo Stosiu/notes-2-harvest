@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "target": "ES2017",
+    "target": "es2015",
     "module": "commonjs",
     "sourceRoot": "src",
     "baseUrl": "src",
