@@ -5,10 +5,13 @@ import { errorHandler } from '~/error-handler';
 
 const program = new Command();
 
-program.name('Notes2Harvest').version('0.0.1');
+program
+  .name('Notes2Harvest')
+  .version('1.0.0')
+  .description('A tool that helps to upload multiple time entries to Harvest.');
 
 program
-  .command('<path>', { isDefault: true })
+  .command('upload <path>', { isDefault: true })
   .description('Tries to upload entries from specified file.')
   .action(uploadCmd);
 

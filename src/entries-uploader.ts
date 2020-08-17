@@ -16,9 +16,9 @@ export class EntriesUploader {
     );
     // eslint-disable-next-line no-console
     console.log(
-      `🏋🏻 Starting logging ${chalk.blue(
+      `🏋🏻 Started the process of logging ${chalk.blue(
         totalNotesToUpload
-      )} entries to Harvest.`
+      )} entries to Harvest!`
     );
 
     let currentUpload: number = 0;
@@ -38,7 +38,9 @@ export class EntriesUploader {
     }
 
     bar.stop();
-    const hoursLog = `${totalHours} ${totalHours > 1 ? 'hours' : 'hour'}`;
+    const hoursLog = `${totalHours.toPrecision(2)} ${
+      totalHours > 1 ? 'hours' : 'hour'
+    }`;
     // eslint-disable-next-line no-console
     console.log(`🏆 Finished! Logged ${chalk.blue(hoursLog)} in total!`);
   }
