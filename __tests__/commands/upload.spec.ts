@@ -4,7 +4,7 @@ import { MissingFileError } from '../../src/errors/MissingFileError';
 
 import { testHarvestConfig } from '../test.env';
 
-jest.mock('../src/config-store');
+jest.mock('../../src/config-store');
 const mockedConfigStore = <jest.Mock<ConfigStore>>ConfigStore;
 
 mockedConfigStore.prototype.harvestConfig = testHarvestConfig;
