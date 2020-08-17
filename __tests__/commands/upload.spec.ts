@@ -1,6 +1,6 @@
-import { uploadCmd } from '../src/commands/upload';
-import { ConfigStore } from '../src/config-store';
-import { MissingFileError } from '../src/errors/MissingFileError';
+import { uploadCmd } from '../../src/commands/upload';
+import { ConfigStore } from '../../src/config-store';
+import { MissingFileError } from '../../src/errors/MissingFileError';
 
 import { testHarvestConfig } from '../test.env';
 
