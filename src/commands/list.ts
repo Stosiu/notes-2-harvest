@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
-import { HarvestApi } from '~/harvest-api';
-import { ConfigStore } from '~/config-store';
-import { Project } from '~/dtos';
+import { HarvestApi } from '../harvest-api';
+import { ConfigStore } from '../config-store';
+import { Project } from '../dtos';
 
 export const listCmd = async (): Promise<void> => {
   const store = new ConfigStore();

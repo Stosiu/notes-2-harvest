@@ -1,6 +1,6 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
-import { ConfigStore } from '~/config-store';
+import { ConfigStore } from '../config-store';
 
 export const configureCmd = async (
   accessToken: string,

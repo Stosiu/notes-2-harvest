@@ -1,6 +1,6 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
-import { HarvestAPIConfig } from '~/harvest-api';
+import { HarvestAPIConfig } from '../harvest-api';
 
 export class ConfigurationError extends Error {
   config: Partial<HarvestAPIConfig>;

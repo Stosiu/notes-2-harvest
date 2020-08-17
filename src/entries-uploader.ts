@@ -1,6 +1,6 @@
 import Harvest from 'harvest';
-import * as chalk from 'chalk';
-import * as cliProgress from 'cli-progress';
+import chalk from 'chalk';
+import cliProgress from 'cli-progress';
 
 import { EntriesLogs } from './notes-parser';
 import { TimeEntry } from './line-parser';

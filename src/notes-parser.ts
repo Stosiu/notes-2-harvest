@@ -1,5 +1,5 @@
 import { LineParser, TimeEntry } from './line-parser';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { Project } from './dtos';
 

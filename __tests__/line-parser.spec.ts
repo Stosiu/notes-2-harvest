@@ -1,13 +1,13 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
-import { LineParser } from '~/line-parser';
-import { Project } from '~/dtos';
+import { LineParser } from '../src//line-parser';
+import { Project } from '../src//dtos';
 
 import {
   generateProject,
   generateTaskAssigment
 } from './_utils/mocks-generators';
-import { LineParseError } from '~/errors/LineParseError';
+import { LineParseError } from '../src//errors/LineParseError';
 
 const EXAMPLE_TASK = generateTaskAssigment('Programming');
 const EXAMPLE_PROJECTS: Project[] = [generateProject('TEST', [EXAMPLE_TASK])];

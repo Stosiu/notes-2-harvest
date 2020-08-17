@@ -1,7 +1,7 @@
 import * as faker from 'faker';
 
-import { Project, TaskAssignment } from '~/dtos';
-import { TimeEntry } from '~/line-parser';
+import { Project, TaskAssignment } from '../src/dtos';
+import { TimeEntry } from '../src/line-parser';
 
 export const generateTaskAssigment = (
   name: string = faker.random.word()

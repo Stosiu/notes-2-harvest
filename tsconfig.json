@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "target": "es2015",
     "module": "commonjs",
     "sourceRoot": "src",
     "baseUrl": "src",
@@ -12,24 +11,25 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "esModuleInterop": false,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "downlevelIteration": true,
-    "paths": {
-      "~/*": ["*"]
-    },
     "lib": ["esnext", "es6"],
     "strict": true,
     "sourceMap": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist/lib",
+    "declarationDir": "typings",
+    "outDir": "lib",
     "types": ["jest", "node"],
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "target": "ES2019",
+    "strictFunctionTypes": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts", "__tests__/**/*.ts"],
   "exclude": ["node_modules"]

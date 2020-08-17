@@ -1,4 +1,4 @@
-import { HarvestAPIConfig } from '~/harvest-api';
+import { HarvestAPIConfig } from '../src/harvest-api';
 
 // How to get one for your tests:
 // https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/

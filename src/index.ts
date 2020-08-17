@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 
 import { configureCmd, listCmd, uploadCmd } from './commands';
-import { errorHandler } from '~/error-handler';
+import { errorHandler } from './error-handler';
 
 const program = new Command();
 

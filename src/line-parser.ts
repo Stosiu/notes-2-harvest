@@ -1,8 +1,8 @@
-import * as dayjs from 'dayjs';
-import * as chalk from 'chalk';
+import dayjs from 'dayjs';
+import chalk from 'chalk';
 
 import { Project, TaskAssignment } from './dtos';
-import { LineParseError } from '~/errors/LineParseError';
+import { LineParseError } from './errors/LineParseError';
 
 export interface TimeEntry {
   description: string;

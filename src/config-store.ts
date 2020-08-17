@@ -1,4 +1,4 @@
-import * as Configstore from 'configstore';
+import Configstore from 'configstore';
 
 import { HarvestAPIConfig } from './harvest-api';
 import { ConfigurationError } from './errors/ConfigurationError';

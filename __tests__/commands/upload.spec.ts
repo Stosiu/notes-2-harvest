@@ -1,10 +1,10 @@
-import { uploadCmd } from '~/commands/upload';
-import { ConfigStore } from '~/config-store';
-import { MissingFileError } from '~/errors/MissingFileError';
+import { uploadCmd } from '../src/commands/upload';
+import { ConfigStore } from '../src/config-store';
+import { MissingFileError } from '../src/errors/MissingFileError';
 
 import { testHarvestConfig } from '../test.env';
 
-jest.mock('~/config-store');
+jest.mock('../src/config-store');
 const mockedConfigStore = <jest.Mock<ConfigStore>>ConfigStore;
 
 mockedConfigStore.prototype.harvestConfig = testHarvestConfig;

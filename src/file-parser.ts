@@ -1,6 +1,6 @@
-import * as fs from 'fs';
+import fs from 'fs';
 
-import { MissingFileError } from '~/errors/MissingFileError';
+import { MissingFileError } from './errors/MissingFileError';
 
 export class FileParser {
   static async fileToString(path: string): Promise<string> {

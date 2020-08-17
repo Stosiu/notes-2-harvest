@@ -1,10 +1,10 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
-import { FileParser } from '~/file-parser';
-import { HarvestApi } from '~/harvest-api';
-import { NotesParser } from '~/notes-parser';
-import { ConfigStore } from '~/config-store';
-import { EntriesUploader } from '~/entries-uploader';
+import { FileParser } from '../file-parser';
+import { HarvestApi } from '../harvest-api';
+import { NotesParser } from '../notes-parser';
+import { ConfigStore } from '../config-store';
+import { EntriesUploader } from '../entries-uploader';
 
 export const uploadCmd = async (path: string | undefined): Promise<void> => {
   if (!path) {

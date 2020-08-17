@@ -1,7 +1,7 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
-import { NotesParser } from '~/notes-parser';
-import { Project } from '~/dtos';
+import { NotesParser } from '../src/notes-parser';
+import { Project } from '../src/dtos';
 
 import {
   generateNote,
