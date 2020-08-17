@@ -7,7 +7,7 @@ const program = new Command();
 
 program
   .name('Notes2Harvest')
-  .version('1.0.0')
+  .version('1.0.1')
   .description('A tool that helps to upload multiple time entries to Harvest.');
 
 program
