@@ -2,7 +2,6 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "module": "commonjs",
-    "sourceRoot": "src",
     "baseUrl": "src",
     "removeComments": true,
     "importHelpers": true,
@@ -16,7 +15,6 @@
     "downlevelIteration": true,
     "lib": ["esnext", "es6"],
     "strict": true,
-    "sourceMap": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "declarationDir": "typings",
