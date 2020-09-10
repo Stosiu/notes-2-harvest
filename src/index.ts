@@ -38,3 +38,18 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 export { program };
+
+const badFunction = async (a) => {
+  const b = (a) => {
+    console.log('🦑', a);
+    return a;
+  };
+
+  console.log('🦑', a);
+
+  return c(a);
+  throw new Error('Test');
+  return b(a);
+};
+
+badFunction('a');
